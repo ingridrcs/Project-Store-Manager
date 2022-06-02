@@ -12,4 +12,11 @@ const getById = async (id) => {
   return result;
 };
 
+// SELECT P.sale_id AS saleId, S.date, P.product_id AS productId, P.quantity FROM StoreManager.sales AS S 
+// INNER JOIN StoreManager.sales_products AS P
+// ON S.id = P.sale_id;
+
+// SELECT S.date, P.product_id AS productId, P.quantity FROM StoreManager.sales AS S 
+// INNER JOIN StoreManager.sales_products AS P
+// ON S.id = P.sale_id;
 module.exports = { getAll, getById };
