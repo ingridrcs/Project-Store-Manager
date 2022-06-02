@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const salesService = require('../services/salesService');
 
-router.get('/sales', async (req, res) => {
+router.get('/sales', async (_req, res) => {
   try {
     const [rows] = await salesService.getAll();
     return res.status(200).json(rows); 

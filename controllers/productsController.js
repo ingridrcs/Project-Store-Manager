@@ -9,7 +9,7 @@ router.get('/products', async (req, res) => {
     return res.status(200).json(rows); 
   } catch (error) {
     console.log(error);
-    return res.status(404).json({ message: 'Erro interno' });
+    return res.status(404).json({ message: 'Product not found' });
   }
 });
 
@@ -23,3 +23,5 @@ router.get('/products/:id', async (req, res) => {
     return res.status(404).json({ message: 'Product not found' });
   }
 });
+
+module.exports = router;
