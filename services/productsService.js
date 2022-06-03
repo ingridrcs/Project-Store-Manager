@@ -7,4 +7,4 @@ const getProductService = (id = null) => {
   return productsModel.getAll();
 };
 
-module.exports = getProductService;
+module.exports = { getProductService };

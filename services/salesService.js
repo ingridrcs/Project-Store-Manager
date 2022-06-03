@@ -7,4 +7,4 @@ const getSaleService = (id = null) => {
   return salesModel.getAll();
 };
 
-module.exports = getSaleService;
+module.exports = { getSaleService };
