@@ -1,8 +1,8 @@
-const salesService = require('../services/salesService');
+const sales = require('../services/salesService');
 
-const getAll = async (_req, res) => {
+const getAllItens = async (_req, res) => {
   try {
-    const response = await salesService.getAll();
+    const response = await sales.getSaleService();
     return res.status(200).json(response); 
   } catch (error) {
     console.log(error);
@@ -10,10 +10,10 @@ const getAll = async (_req, res) => {
   }
 };
 
-const getById = async (req, res) => {
+const getByIdItens = async (req, res) => {
   try {
     const { id } = req.params;
-    const response = await salesService.getById(id);
+    const response = await sales.getSaleService(id);
     return res.status(200).json(response); 
   } catch (error) {
     console.log(error);
@@ -21,4 +21,4 @@ const getById = async (req, res) => {
   }
 };
 
-module.exports = { getAll, getById };
+module.exports = { getAllItens, getByIdItens };
