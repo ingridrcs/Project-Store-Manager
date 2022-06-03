@@ -7,4 +7,4 @@ const getAll = (id = null) => {
   return productsModel.getAll();
 };
 
-module.exports = { getAll };
+module.exports = getAll;
