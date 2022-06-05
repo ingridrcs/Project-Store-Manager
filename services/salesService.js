@@ -7,4 +7,9 @@ const getSaleService = (id = null) => {
   return salesModel.getAll();
 };
 
-module.exports = { getSaleService };
+const addSalesService = async (date, productId, quantity) => {
+   const newProduct = await salesModel.add(date, productId, quantity);
+   return newProduct;
+};
+
+module.exports = { getSaleService, addSalesService };
