@@ -12,4 +12,9 @@ const addSalesService = async (date, productId, quantity) => {
    return newProduct;
 };
 
-module.exports = { getSaleService, addSalesService };
+const updateSalesService = async (date, productId, quantity) => {
+   const result = await salesModel.update(date, productId, quantity);
+   return result;
+};
+
+module.exports = { getSaleService, addSalesService, updateSalesService };
