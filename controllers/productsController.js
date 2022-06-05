@@ -35,6 +35,6 @@ const rows = await products.addProductService(id, name, quantity);
   if (rows) {
     return res.status(200).json(rows);
   }
-    return res.status(404).json({ message: 'Product already exists' });
+    return res.status(404).json({ message: 'Product not found' });
 };
 module.exports = { getAllItens, getByIdItens, addItens, updateItens };
