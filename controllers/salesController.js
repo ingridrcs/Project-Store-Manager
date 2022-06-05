@@ -19,4 +19,24 @@ const getByIdItens = async (req, res) => {
     return res.status(200).json(rows);
 };
 
-module.exports = { getAllItens, getByIdItens };
+const addItens = async (req, res) => {
+const { date, productId, quantity } = req.body;
+const rows = await sales.addProductService(date, productId, quantity);
+  if (!quantity) {
+    return res.status(409).json({ message: 'Product already exists' });
+  }
+   if (quantity >= 0) {
+    return res.status(409).json({ message: 'Product already exists' });
+  }
+    return res.status(201).json(rows);
+};
+
+const updateItens = async (req, res) => {
+  const { id } = req.params;
+  const [{ productId, quantity }] = req.body;
+  console.log('console update', productId, quantity);  
+  const update = await sales.updateSalesService(id, productId, quantity);
+  return res.status(200).json(update);
+};
+
+module.exports = { getAllItens, getByIdItens, addItens, updateItens };
