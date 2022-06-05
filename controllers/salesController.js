@@ -33,10 +33,12 @@ const rows = await sales.addProductService(date, productId, quantity);
 
 const updateItens = async (req, res) => {
   const { id } = req.params;
-  const [{ productId, quantity }] = req.body;
-  console.log('console update', productId, quantity);  
+  const [{ productId, quantity }] = req.body; 
   const update = await sales.updateSalesService(id, productId, quantity);
-  return res.status(200).json(update);
+    if (update) {
+    return res.status(200).json(update);
+  }
+    return res.status(404).json({ message: 'Product not found' });
 };
 
 module.exports = { getAllItens, getByIdItens, addItens, updateItens };

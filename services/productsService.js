@@ -17,12 +17,8 @@ const addProductService = async (name, quantity) => {
 };
 
 const updateProductService = async (id, name, quantity) => {
-   const rows = await productsModel.update(id, name, quantity);
-   if (rows.length !== 0) {
-      return null;
-   }
-   const newProduct = await productsModel.add(name, quantity);
-   return newProduct;
+   const result = await productsModel.update(id, name, quantity);
+   return result;
 };
 
 module.exports = { getProductService, addProductService, updateProductService };
