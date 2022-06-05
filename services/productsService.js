@@ -7,4 +7,22 @@ const getProductService = (id = null) => {
   return productsModel.getAll();
 };
 
-module.exports = { getProductService };
+const addProductService = async (name, quantity) => {
+   const rows = await productsModel.getByName(name);
+   if (rows.length !== 0) {
+      return null;
+   }
+   const newProduct = await productsModel.add(name, quantity);
+   return newProduct;
+};
+
+const updateProductService = async (id, name, quantity) => {
+   const rows = await productsModel.update(id, name, quantity);
+   if (rows.length !== 0) {
+      return null;
+   }
+   const newProduct = await productsModel.add(name, quantity);
+   return newProduct;
+};
+
+module.exports = { getProductService, addProductService, updateProductService };
