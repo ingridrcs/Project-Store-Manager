@@ -27,10 +27,11 @@ const add = async (name, quantity) => {
   return result;
 };
 
-// const update = async (id, name, quantity) => {
-//   const [result] = await connection
-//   .execute('UPDATE StoreManager.products SET name=?, quantity=? WHERE id=?', [name, quantity, id]);
-//   return result.affectedRows;
-// };
+const update = async (id, name, quantity) => {
+  const [result] = await connection
+  .execute('UPDATE StoreManager.products SET name=?, quantity=? WHERE id=?', [name, quantity, id]);
+  console.log(result);
+  return result.affectedRows;
+};
 
-module.exports = { getAll, getById, add, getByName };
+module.exports = { getAll, getById, add, getByName, update };
