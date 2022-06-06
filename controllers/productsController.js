@@ -31,10 +31,19 @@ const rows = await products.addProductService(name, quantity);
 const updateItens = async (req, res) => {
 const { name, quantity } = req.body;
 const { id } = req.params;
-const rows = await products.addProductService(id, name, quantity);
+const rows = await products.updateProductService(id, name, quantity);
   if (rows) {
     return res.status(200).json(rows);
   }
     return res.status(404).json({ message: 'Product not found' });
 };
-module.exports = { getAllItens, getByIdItens, addItens, updateItens };
+
+const removeItens = async (req, res) => {
+    const { id } = req.params;
+    const result = await products.removeProductsService(id);
+    if (result === null) {
+    return res.status(404).json({ message: 'Product not found' });
+    }
+    return res.status(204).end();
+};
+module.exports = { getAllItens, getByIdItens, addItens, updateItens, removeItens };

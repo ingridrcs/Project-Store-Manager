@@ -17,8 +17,24 @@ const addProductService = async (name, quantity) => {
 };
 
 const updateProductService = async (id, name, quantity) => {
+   const verify = await productsModel.getById(id);
+   // console.log(verify);
+   // ver se isso está correto
+   if (!verify.id) {
+      return null;
+   }
    const result = await productsModel.update(id, name, quantity);
    return result;
 };
 
-module.exports = { getProductService, addProductService, updateProductService };
+const removeProductsService = async (id) => {
+   const result = await productsModel.getById(id);
+   if (!result) {
+      return null;
+   }
+      const remove = await productsModel.remove(id);
+      return remove;
+};
+
+module.exports = { 
+   getProductService, addProductService, updateProductService, removeProductsService };
