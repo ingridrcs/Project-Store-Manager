@@ -38,3 +38,5 @@ const removeProductsService = async (id) => {
 
 module.exports = { 
    getProductService, addProductService, updateProductService, removeProductsService };
+
+   // Colaboração dos instrutores durante a monitoria
