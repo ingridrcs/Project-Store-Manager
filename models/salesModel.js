@@ -20,21 +20,26 @@ const getById = async (id) => {
   return result;
 };
 
-const add = async (date, productId, quantity) => {
+const add = async (id, productId, quantity) => {
   const [row] = await connection
   .execute(
-    'INSERT INTO StoreManager.sales (date,productId, quantity) VALUES (?, ?, ?)',
-    [date, productId, quantity],
+    'INSERT INTO StoreManager.sales_products (saleId, productId, quantity) VALUES (?, ?, ?)',
+    [id, productId, quantity],
     );
   const result = {
-    saleid: row.insertId,
-    productId,
-    quantity,
+    id: row.insertId,
+    itemSold: [
+      {
+        productId,
+        quantity,
+      },
+    ],
   };
   return result;
 };
 
 const update = async (id, productId, quantity) => {
+  console.log(id, productId, quantity);
   await connection
   .execute(
 'UPDATE StoreManager.sales_products SET product_id = ? WHERE sale_id = ? AND quantity = ?;',

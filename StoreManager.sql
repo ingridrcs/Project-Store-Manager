@@ -43,4 +43,4 @@ INSERT INTO StoreManager.sales (date) VALUES
 INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity) VALUES
     (1, 1, 5),
     (1, 2, 10),
-    (2, 3, 15);
+    (2, 3, 14);
