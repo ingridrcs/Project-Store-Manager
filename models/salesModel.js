@@ -38,15 +38,15 @@ const add = async (id, productId, quantity) => {
   return result;
 };
 
-const update = async (saleId, productId, quantity) => {
-  console.log(saleId, productId, quantity);
+const update = async (id, productId, quantity) => {
+  console.log(id, productId, quantity);
   await connection
   .execute(
 'UPDATE StoreManager.sales_products SET quantity = ? WHERE product_id = ? AND sale_id = ?;',
-  [saleId, productId, quantity],
+  [quantity, productId, id],
   );
      const sale = {
-     saleId,
+     saleId: id,
      itemUpdated: [
        {
          productId,
