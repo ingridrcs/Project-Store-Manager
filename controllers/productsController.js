@@ -37,7 +37,7 @@ console.log(rows);
     return res.status(404).json({ message: 'Product not found' });
   }
   const [result] = await products.getProductService(id);
-  console.log(result);
+  // console.log(result);
     return res.status(200).json(result[0]);
 };
 

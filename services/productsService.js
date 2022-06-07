@@ -28,7 +28,7 @@ const updateProductService = async (id, name, quantity) => {
 
 const removeProductsService = async (id) => {
    const result = await productsModel.getById(id);
-   console.log(result);
+   // console.log(result);
    if (result[0].length === 0) {
       return null;
    }
