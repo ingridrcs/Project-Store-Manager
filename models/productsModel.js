@@ -27,15 +27,16 @@ const add = async (name, quantity) => {
   return result;
 };
 
-const update = async (name, quantity, id) => {
+const update = async (id, name, quantity) => {
   const [result] = await connection
-  .execute('UPDATE StoreManager.products SET name = ?, quantity = ? WHERE id = ?',
+  .execute('UPDATE StoreManager.products SET name = ?, quantity = ? WHERE id = ?;',
   [name, quantity, id]);
+  // console.log(result);
   return result.affectedRows;
 };
 
 const remove = async (id) => {
-  const result = await connection.execute('DELETE FROM StoreManager.products WHERE id=?', [id]);
+  const [result] = await connection.execute('DELETE FROM StoreManager.products WHERE id=?', [id]);
   return result;
 };
 

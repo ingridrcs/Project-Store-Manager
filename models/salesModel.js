@@ -34,10 +34,11 @@ const add = async (date, productId, quantity) => {
   return result;
 };
 
-const update = async (saleId, productId, quantity) => {
+const update = async (productId, quantity, saleId) => {
   const [result] = await connection
   .execute('UPDATE StoreManager.sales_products SET product_id =? quantity = ? WHERE sale_id = ?',
-  [quantity, saleId, productId]);
+  [saleId, productId, quantity]);
+  console.log(result);
   return result.affectedRows;
 };
 module.exports = { getAll, getById, add, update };

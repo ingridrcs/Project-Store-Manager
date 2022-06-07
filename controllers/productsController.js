@@ -32,10 +32,13 @@ const updateItens = async (req, res) => {
 const { name, quantity } = req.body;
 const { id } = req.params;
 const rows = await products.updateProductService(id, name, quantity);
-  if (rows) {
-    return res.status(200).json(rows);
-  }
+console.log(rows);
+  if (!rows) {
     return res.status(404).json({ message: 'Product not found' });
+  }
+  const [result] = await products.getProductService(id);
+  console.log(result);
+    return res.status(200).json(result[0]);
 };
 
 const removeItens = async (req, res) => {
