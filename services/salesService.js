@@ -12,9 +12,10 @@ const addSalesService = async (date, productId, quantity) => {
    return newProduct;
 };
 
-const updateSalesService = async (date, productId, quantity) => {
-   const result = await salesModel.update(date, productId, quantity);
-   return result;
+const updateSalesService = async (id, productId, quantity) => {
+   const result = await salesModel.update(id, productId, quantity);
+   // console.log(result);
+return result;
 };
 
 module.exports = { getSaleService, addSalesService, updateSalesService };

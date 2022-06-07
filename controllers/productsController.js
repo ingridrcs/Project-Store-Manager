@@ -32,7 +32,7 @@ const updateItens = async (req, res) => {
 const { name, quantity } = req.body;
 const { id } = req.params;
 const rows = await products.updateProductService(id, name, quantity);
-console.log(rows);
+// console.log(rows);
   if (!rows) {
     return res.status(404).json({ message: 'Product not found' });
   }
