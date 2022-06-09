@@ -3,12 +3,12 @@ const { expect } = require("chai");
 const productsService = require("../../../services/productsService");
 const productsController = require("../../../controllers/productsController");
 
-describe("Testando a camada Controller", async() => {
-  describe("quando o payload informado não é válido", async () => {
+describe("Testando a camada Controller", () => {
+  describe("quando o payload informado não é válido", () => {
     const response = {};
     const request = {};
 
-    before(async() => {
+    before(() => {
       request.body = {};
       response.status = sinon.stub().returns(response);
       response.json = sinon.stub().returns("Product not found");
@@ -16,7 +16,7 @@ describe("Testando a camada Controller", async() => {
       sinon.stub(productsService, "getProductService").resolves([{}]);
     });
 
-    after(async() => { productsService.getProductService.restore() });
+    after(() => { productsService.getProductService.restore() });
 
     it("é chamado o status com o código 404", async () => {
       await productsController.getAllItens(request, response);
@@ -30,11 +30,11 @@ describe("Testando a camada Controller", async() => {
       expect(response.json.calledWith("Product not found")).to.be.equal(false);
     });
   });
-  describe("quando é inserido com sucesso", async () => {
+  describe("quando é inserido com sucesso", () => {
     const response = {};
     const request = {};
 
-    before(async() => {
+    before(() => {
       const productsList = [
         {
           "id": 1,
@@ -59,7 +59,7 @@ describe("Testando a camada Controller", async() => {
       sinon.stub(productsService, "getProductService").resolves(productsList);
     });
 
-    after(async() => {
+    after(() => {
       productsService.getProductService.restore();
     });
 

@@ -3,8 +3,8 @@ const { expect } = require("chai");
 const salesModel = require("../../../models/salesModel");
 const salesService = require("../../../services/salesService");
 
-describe("Testando a camada de Service", async() => {
-  describe("testando a rota /sales/:id onde a venda é retornada pelo id", async () => {
+describe("Testando a camada de Service", () => {
+  describe("testando a rota /sales/:id onde a venda é retornada pelo id", () => {
     const id = 1;
     before(async () => {
       const findId = [[{
@@ -32,7 +32,7 @@ describe("Testando a camada de Service", async() => {
       expect(response[0]).to.have.property("productId");
     })
   });
-  describe('quando não há vendas cadastradas', async () => {
+  describe('quando não há vendas cadastradas', () => {
     before(async() => {
       const empty = [[]];
       sinon.stub(salesModel, 'getAll').resolves(empty);
@@ -50,7 +50,7 @@ describe("Testando a camada de Service", async() => {
     });
 
   });
-  describe("Testando a atualização de uma venda", async () => {
+  describe("Testando a atualização de uma venda", () => {
     const salelist = [[
       {
         "saleId": 1,
