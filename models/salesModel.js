@@ -20,22 +20,19 @@ const getById = async (id) => {
   return result;
 };
 
-const add = async (id, productId, quantity) => {
-  const [row] = await connection
-  .execute(
-    'INSERT INTO StoreManager.sales_products (saleId, productId, quantity) VALUES (?, ?, ?)',
-    [id, productId, quantity],
+const addSales = async () => {
+  const [rows] = await connection.execute('INSERT INTO StoreManager.sales (date) VALUES (NOW());');
+  return rows.insertId;
+};
+
+const addSalesProduct = async (saleId, soldList) => {
+  soldList.forEach(({ productId, quantity }) => {
+    connection.execute(
+      'INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?);',
+      [saleId, productId, quantity],
     );
-  const result = {
-    id: row.insertId,
-    itemSold: [
-      {
-        productId,
-        quantity,
-      },
-    ],
-  };
-  return result;
+  });
+  return soldList;
 };
 
 const update = async (id, productId, quantity) => {
@@ -56,4 +53,4 @@ const update = async (id, productId, quantity) => {
    };
    return sale;
 };
-module.exports = { getAll, getById, add, update };
+module.exports = { getAll, getById, addSales, addSalesProduct, update };
