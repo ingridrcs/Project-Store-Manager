@@ -20,15 +20,10 @@ const getByIdItens = async (req, res) => {
 };
 
 const addItens = async (req, res) => {
-const { id, productId, quantity } = req.body;
-const rows = await sales.addProductService(id, productId, quantity);
-  if (!quantity) {
-    return res.status(409).json({ message: 'Product already exists' });
-  }
-   if (quantity >= 0) {
-    return res.status(409).json({ message: 'Product already exists' });
-  }
-    return res.status(201).json(rows);
+// const { id, productId, quantity } = req.body;
+const rows = await sales.addSalesService(req.body);
+console.log(rows);
+return res.status(201).json(rows);
 };
 
 const updateItens = async (req, res) => {
