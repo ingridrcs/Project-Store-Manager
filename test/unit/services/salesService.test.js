@@ -3,7 +3,7 @@ const { expect } = require("chai");
 const salesModel = require("../../../models/salesModel");
 const salesService = require("../../../services/salesService");
 
-describe("Testando a camada de Service", () => {
+describe("Testando a camada de Service", async() => {
   describe("testando a rota /sales/:id onde a venda é retornada pelo id", async () => {
     const id = 1;
     before(async () => {
@@ -33,11 +33,11 @@ describe("Testando a camada de Service", () => {
     })
   });
   describe('quando não há vendas cadastradas', async () => {
-    before(() => {
+    before(async() => {
       const empty = [[]];
       sinon.stub(salesModel, 'getAll').resolves(empty);
     });
-    after(() => {
+    after(async() => {
       salesModel.getAll.restore();
     });
     it('o array retorna como vazio', async () => {

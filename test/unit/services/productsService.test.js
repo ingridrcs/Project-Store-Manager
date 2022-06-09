@@ -3,7 +3,7 @@ const { expect } = require("chai");
 const productsModel = require("../../../models/productsModel");
 const productsService = require("../../../services/productsService");
 
-describe("Testando a camada de Service", () => {
+describe("Testando a camada de Service", async() => {
   describe("testando a rota /products/:id onde o produto é retornado pelo id", async () => {
     const id = 1;
     const nameProduct = "produto";
@@ -33,11 +33,11 @@ describe("Testando a camada de Service", () => {
     })
   });
   describe('quando não há produtos cadastrados', async () => {
-    before(() => {
+    before(async () => {
       const empty = [[]];
       sinon.stub(productsModel, 'getAll').resolves(empty);
     });
-    after(() => {
+    after(async () => {
       productsModel.getAll.restore();
     });
     it('o array retorna como vazio', async () => {

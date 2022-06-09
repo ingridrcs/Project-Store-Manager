@@ -121,11 +121,11 @@ describe("Testar a camada Model", async() => {
   describe('Buscando as vendas no banco de dados', async() => {
   describe('quando não existe nenhuma venda criada', async () => {
 
-    before(() => {
+    before(async() => {
       sinon.stub(connection, 'execute').resolves([[]]);
     });
 
-    after(() => {
+    after(async() => {
       connection.execute.restore();
     });
 
