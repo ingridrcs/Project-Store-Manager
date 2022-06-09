@@ -7,9 +7,14 @@ const getSaleService = (id = null) => {
   return salesModel.getAll();
 };
 
-const addSalesService = async (date, productId, quantity) => {
-   const newProduct = await salesModel.add(date, productId, quantity);
-   return newProduct;
+const addSalesService = async (sales) => {
+  const getId = await salesModel.addSales();
+   const newProduct = await salesModel.addSalesProduct(getId, sales);
+   const add = {
+     saleId: getId,
+     itemSold: [...newProduct],
+   };
+   return add;
 };
 
 const updateSalesService = async (id, productId, quantity) => {
