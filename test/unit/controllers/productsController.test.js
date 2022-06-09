@@ -70,4 +70,36 @@ describe("Testando a camada Controller", () => {
     });
 
   });
+
+  describe("quando a busca é feita com sucesso através do id", () => {
+    const id = 1;
+    const response = {};
+    const request = {params: { id }};
+
+    before(() => {
+      const productsList = [
+        {
+          "id": 1,
+          "name": "Martelo de Thor",
+          "quantity": 10
+        },
+      ]
+
+      response.status = sinon.stub().returns(response);
+      response.json = sinon.stub().returns(productsList);
+
+      sinon.stub(productsService, "getProductService").resolves(productsList);
+    });
+
+    after(() => {
+      productsService.getProductService.restore();
+    });
+
+    it("é chamado o status com o código 200", async () => {
+      await productsController.getByIdItens(request, response);
+
+      expect(response.status.calledWith(200)).to.be.equal(true);
+    });
+
+  });
 })
