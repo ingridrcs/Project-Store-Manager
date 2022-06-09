@@ -3,8 +3,8 @@ const { expect } = require("chai");
 const connection = require("../../../db/connection");
 const productsModel = require("../../../models/productsModel");
 
-describe("Testar a camada Model", () => {
-  describe("Ver se o endpoint GET/products está retornando todos os produtos do BD ", () => {
+describe("Testar a camada Model", async() => {
+  describe("Ver se o endpoint GET/products está retornando todos os produtos do BD ", async() => {
     const list = [[
       {
         "id": 1,
@@ -53,7 +53,7 @@ describe("Testar a camada Model", () => {
     // eu posso copiar a resposta que o banco de dados retorna ou tenho que mudar os valores??
   })
 
-  describe("Busca por um produto pelo id", () => {
+  describe("Busca por um produto pelo id", async() => {
     describe("quando a busca ocorre de forma correta", async () => {
 
       const insertId = 1;
@@ -83,14 +83,14 @@ describe("Testar a camada Model", () => {
     });
   })
 
-  describe('Buscando os produtos no banco de dados', () => {
+  describe('Buscando os produtos no banco de dados', async() => {
     describe('quando não existe nenhum produto criado', async () => {
 
-    before(() => {
+    before(async () => {
       sinon.stub(connection, 'execute').resolves([[]]);
     });
 
-    after(() => {
+    after(async () => {
       connection.execute.restore();
     });
 
@@ -100,7 +100,7 @@ describe("Testar a camada Model", () => {
     });
   });
 })
-  describe("Busca por um produto pelo nome", () => {
+  describe("Busca por um produto pelo nome", async() => {
     describe("quando a busca ocorre de forma correta", async () => {
       const insertName = "produto";
       before(async () => {

@@ -5,7 +5,7 @@ const getAllItens = async (_req, res) => {
     const [rows] = await sales.getSaleService();
     return res.status(200).json(rows); 
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     return res.status(404).json({ message: 'Sale not found' });
   }
 };
@@ -22,7 +22,7 @@ const getByIdItens = async (req, res) => {
 const addItens = async (req, res) => {
 // const { id, productId, quantity } = req.body;
 const rows = await sales.addSalesService(req.body);
-console.log(rows);
+// console.log(rows);
 return res.status(201).json(rows);
 };
 

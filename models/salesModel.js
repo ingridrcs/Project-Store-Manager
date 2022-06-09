@@ -36,7 +36,7 @@ const addSalesProduct = async (saleId, soldList) => {
 };
 
 const update = async (id, productId, quantity) => {
-  console.log(id, productId, quantity);
+  // console.log(id, productId, quantity);
   await connection
   .execute(
 'UPDATE StoreManager.sales_products SET quantity = ? WHERE product_id = ? AND sale_id = ?;',

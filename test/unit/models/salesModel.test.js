@@ -3,8 +3,8 @@ const { expect } = require("chai");
 const connection = require("../../../db/connection");
 const salesModel = require("../../../models/salesModel");
 
-describe("Testar a camada Model", () => {
-  describe("Ver se o endpoint GET/sales está retornando correto ", () => {
+describe("Testar a camada Model", async() => {
+  describe("Ver se o endpoint GET/sales está retornando correto ", async() => {
     const salelist = [[
       {
         "saleId": 1,
@@ -25,12 +25,12 @@ describe("Testar a camada Model", () => {
         "quantity": 15
       }
     ]];
-    before(() => {
+    before(async () => {
 
       sinon.stub(connection, "execute").resolves(salelist);
     });
 
-    after(() => {
+    after(async () => {
       connection.execute.restore();
     });
     it('função retorna um array', async () => {
@@ -55,11 +55,11 @@ describe("Testar a camada Model", () => {
     });
     // eu posso copiar a resposta que o banco de dados retorna ou tenho que mudar os valores??
   })
-  describe("Busca por uma venda pelo id", () => {
+  describe("Busca por uma venda pelo id", async() => {
     describe("quando a busca ocorre de forma correta", async () => {
 
       const insertId = 1;
-      before(() => {
+      before(async () => {
         const findId = {
           "saleId": 1,
           "date": "2022-06-08T19:27:30.000Z",
@@ -70,7 +70,7 @@ describe("Testar a camada Model", () => {
         sinon.stub(connection, "execute").resolves(findId);
       });
 
-      after(() => {
+      after(async () => {
         connection.execute.restore();
       });
       it("retorna um objeto", async () => {
@@ -87,7 +87,7 @@ describe("Testar a camada Model", () => {
       });
     });
   })
-  describe("Busca por um filme pelo id", () => {
+  describe("Busca por um filme pelo id", async() => {
     describe("quando a busca ocorre de forma correta", async () => {
 
       const insertId = 1;
@@ -118,7 +118,7 @@ describe("Testar a camada Model", () => {
       });
     });
   })
-  describe('Buscando as vendas no banco de dados', () => {
+  describe('Buscando as vendas no banco de dados', async() => {
   describe('quando não existe nenhuma venda criada', async () => {
 
     before(() => {
