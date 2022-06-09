@@ -2,6 +2,7 @@ const connection = require('../db/connection');
 
 const getAll = async () => {
   const result = await connection.execute('SELECT * FROM StoreManager.products;');
+  // console.log(result);
   return result;
 };
 
@@ -13,6 +14,7 @@ const getById = async (id) => {
 const getByName = async (name) => {
     const [rows] = await connection
     .execute('SELECT * FROM StoreManager.products WHERE name = ?', [name]);
+    console.log('name:', rows);
     return rows;
 };
 
