@@ -81,10 +81,10 @@ describe("Testando a camada de Service", () => {
     });
   });
     describe("Testando a remoção de um produto", () => {
-    const allProducts = [{}];
+    const removeProduct = [{}];
     before(async () => {
-      sinon.stub(productsModel, "getById").resolves(allProducts);
-      sinon.stub(productsModel, "remove").resolves(allProducts);
+      sinon.stub(productsModel, "getById").resolves(removeProduct);
+      sinon.stub(productsModel, "remove").resolves(removeProduct);
     });
     after(async () => { productsModel.getById.restore(), productsModel.remove.restore() });
 
