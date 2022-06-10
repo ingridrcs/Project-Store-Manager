@@ -25,14 +25,16 @@ const addSales = async () => {
   return rows.insertId;
 };
 
-const addSalesProduct = async (saleId, soldList) => {
-  soldList.forEach(({ productId, quantity }) => {
-    connection.execute(
+const addSalesProduct = async (id, productId, quantity) => {
+    await connection.execute(
       'INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity) VALUES (?, ?, ?);',
-      [saleId, productId, quantity],
+      [id, productId, quantity],
     );
-  });
-  return soldList;
+    const add = {
+      productId,
+      quantity,
+    };
+  return add;
 };
 
 const update = async (id, productId, quantity) => {

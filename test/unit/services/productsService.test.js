@@ -80,5 +80,19 @@ describe("Testando a camada de Service", () => {
       expect(response[0][0]).to.be.an("object");
     });
   });
+    describe("Testando a remoção de um produto", () => {
+    const allProducts = [{}];
+    before(async () => {
+      sinon.stub(productsModel, "getById").resolves(allProducts);
+      sinon.stub(productsModel, "remove").resolves(allProducts);
+    });
+    after(async () => { productsModel.getById.restore(), productsModel.remove.restore() });
 
+    it("volta vazio com a remocao", async () => {
+      const id = 1;
+      const [response] = await productsService.removeProductsService(id);
+      expect(response).to.be.empty;
+    });
+  });
 })
+// Source: Aula do módulo 23.4 https://github.com/tryber/sd-xp-b-live-lectures/blob/lecture/23.4/movies-api/tests/services/movieService.test.js
