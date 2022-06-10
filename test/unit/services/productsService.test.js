@@ -80,7 +80,7 @@ describe("Testando a camada de Service", () => {
       expect(response[0][0]).to.be.an("object");
     });
   });
-    describe("Testando a remoção de um produto", () => {
+  describe("Testando a remoção de um produto", () => {
     const removeProduct = [{}];
     before(async () => {
       sinon.stub(productsModel, "getById").resolves(removeProduct);

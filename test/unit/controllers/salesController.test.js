@@ -136,5 +136,31 @@ describe("Testando a camada Controller", () => {
     });
     });
   });
+  describe("quando a venda é removida com sucesso", () => {
+    const id = 1;
+    const response = {};
+    const request = {params:{id}};
+
+    before(() => {
+      response.status = sinon.stub().returns(response);
+      response.end = sinon.stub().returns();
+
+      sinon.stub(salesService, "removeSalesService").resolves();
+    });
+
+    after(() => { salesService.removeSalesService.restore() });
+
+    it("é chamado o status com o código 404", async () => {
+      await salesController.removeItens(request, response);
+
+      expect(response.status.calledWith(404)).to.be.equal(false);
+    });
+
+    it('é chamado o json com a mensagem "Sale not found"', async () => {
+      await salesController.removeItens(request, response);
+
+      expect(response.end.calledWith("Sale not found")).to.be.equal(false);
+    });
+  });
 })
 // Source:Aula do módulo 23.4 https://github.com/tryber/sd-xp-b-live-lectures/blob/lecture/23.4/movies-api/tests/controllers/movieController.test.js
