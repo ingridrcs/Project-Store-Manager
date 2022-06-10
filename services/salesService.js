@@ -30,5 +30,18 @@ const updateSalesService = async (id, productId, quantity) => {
   return result;
 };
 
-module.exports = { getSaleService, addSalesService, updateSalesService };
+const removeSalesService = async (id) => {
+   const removeSales = await salesModel.removeSales(id);
+   console.log('remove', removeSales);
+   if (removeSales.affectedRows === 0) {
+      return null;
+   }
+     const removeSalesProducts = await salesModel.removeSalesProducts(id);
+      return removeSalesProducts;
+};
+
+module.exports = { getSaleService,
+   addSalesService,
+    updateSalesService,
+  removeSalesService };
 // Source: Colaboração dos instrutores durante as monitorias
