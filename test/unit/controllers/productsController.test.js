@@ -2,6 +2,7 @@ const sinon = require("sinon");
 const { expect } = require("chai");
 const productsService = require("../../../services/productsService");
 const productsController = require("../../../controllers/productsController");
+const req = require("express/lib/request");
 
 describe("Testando a camada Controller", () => {
   describe("quando o payload informado não é válido", () => {
@@ -74,7 +75,7 @@ describe("Testando a camada Controller", () => {
   describe("quando a busca é feita com sucesso através do id", () => {
     const id = 1;
     const response = {};
-    const request = {params: { id }};
+    const request = { params: { id } };
 
     before(() => {
       const productsList = [
@@ -100,6 +101,37 @@ describe("Testando a camada Controller", () => {
 
       expect(response.status.calledWith(200)).to.be.equal(true);
     });
+    describe("quando a adição de um produto é feita com sucesso", () => {
+      const response = {};
+      const request = {};
 
+      before(() => {
+        request.body = 
+          {
+            "name": "Martelo de Thor",
+            "quantity": 10
+          },
+        response.status = sinon.stub().returns(response);
+        response.json = sinon.stub().returns();
+
+        sinon.stub(productsService, "addProductService").resolves([{ id:1, name: "Martelo", quantity:2 }]);
+      });
+
+      after(() => {
+        productsService.addProductService.restore();
+      });
+
+    it('é chamado o método "status" passando o código 201', async () => {
+      await productsController.addItens(request, response);
+
+      expect(response.status.calledWith(201)).to.be.equal(true);
+    });
+
+    it('é chamado o método "json" passando um array', async () => {
+      await productsController.addItens(request, response);
+
+      expect(response.json.calledWith(sinon.match.array)).to.be.equal(true);
+    });
+    });
   });
 })
