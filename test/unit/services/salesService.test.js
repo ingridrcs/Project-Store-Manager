@@ -85,5 +85,5 @@ describe("Testando a camada de Service", () => {
       expect(response[0][0]).to.be.an("object");
     });
   });
-
 })
+// Source: Aula do módulo 23.4 https://github.com/tryber/sd-xp-b-live-lectures/blob/lecture/23.4/movies-api/tests/services/movieService.test.js

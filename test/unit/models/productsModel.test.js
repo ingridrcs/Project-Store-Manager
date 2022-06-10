@@ -50,7 +50,6 @@ describe("Testar a camada Model", () => {
 
       expect(item[0]).to.include.all.keys('id', 'name', 'quantity')
     });
-    // eu posso copiar a resposta que o banco de dados retorna ou tenho que mudar os valores??
   })
 
   describe("Busca por um produto pelo id", () => {

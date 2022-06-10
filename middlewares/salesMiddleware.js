@@ -18,3 +18,4 @@ const salesQuantityValidation = (req, res, next) => {
   next();
 };
 module.exports = { salesProductIdValidation, salesQuantityValidation };
+// Não estão funcionando
